@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Amministrazione correntisti</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+	
+</head>
+<body>
+
+	<div class="container my-2">
+	<h1>Lista Correntisti</h1>
+	
+	<a th:href = "@{/formCorrentista}" class="btn btn-info col-2"> Aggiungi correntista </a>
+			<a th:href = "@{/formConto}" class="btn btn-info col-2" > Aggiungi Conto </a>
+	
+	</br>
+		</br>
+	
+		<table border="1" class = "table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>
+						<a th:href="@{'/pagina/' + ${paginaAttuale} + '?campo=nome&ordine=' + ${ordineinverso}}">
+							Nome</a>
+					</th>
+					<th>
+						<a th:href="@{'/pagina/' + ${paginaAttuale} + '?campo=cognome&ordine=' + ${ordineinverso}}">
+							Cognome</a>
+					</th>
+					<th>
+						<a th:href="@{'/pagina/' + ${paginaAttuale} + '?campo=codicefiscale&ordine=' + ${ordineinverso}}">
+							Codice fiscale</a>
+					</th>
+					<th> Opzioni </th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr th:each="correntista : ${listacorrentisti}">
+					<td th:text="${correntista.nome}"></td>
+					<td th:text="${correntista.cognome}"></td>
+					<td th:text="${correntista.codicefiscale}"></td>
+					<td> <a th:href="@{/modificaCorrentista/{id} (id=${correntista.id})}" class="btn btn-primary">Modifica</a>
+					    <a th:href="@{/eliminaCorrentista/{id}(id=${correntista.id})}" class="btn btn-danger">Elimina</a>
+					    					    <a th:href="@{/contoCorrente/{id}(id=${correntista.id})}">Conto</a>
+					    
+					</td>
+				</tr>
+			
+				
+				
+			</tbody>
+		</table>
+	
+	
+	
+	 
+		<div th:if = "${pagineTotali > 1}">
+			<div class = "row col-sm-10">
+				<div class = "col-sm-2">
+					Correntisti: [[${correntistiTotali}]] 
+				</div>
+				<div class = "col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, pagineTotali)}">
+						<a th:if="${paginaAttuale != i}" th:href="@{'/pagina/' + ${i}+ '?campo=' + ${campo} + '&ordine=' + ${ordine}}">[[${i}]]</a>
+						<span th:unless="${paginaAttuale != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+				</div>
+				
+								<div class = "col-sm-1">
+					<a th:if="${paginaAttuale > 1}" th:href="@{'/pagina/' + ${paginaAttuale - 1}+ '?campo=' + ${campo} + '&ordine=' + ${ordine}}">Indietro</a>
+					<span th:unless="${paginaAttuale > 1}">Indietro</span>
+				</div>
+				
+				<div class = "col-sm-1">
+					<a th:if="${paginaAttuale < pagineTotali}" th:href="@{'/pagina/' + ${paginaAttuale + 1}+ '?campo=' + ${campo} + '&ordine=' + ${ordine}}">Prossima</a>
+					
+					<span th:unless="${paginaAttuale < pagineTotali}">Prossima</span>
+				</div>
+				
+				 <div class="col-sm-1">
+    				<a th:if="${paginaAttuale < pagineTotali}" th:href="@{'/pagina/' + ${pagineTotali}+ '?campo=' + ${campo} + '&ordine=' + ${ordine}}">Ultima</a>
+    				
+					<span th:unless="${paginaAttuale < pagineTotali}">Ultima</span>
+   				 </div>
+			</div>
+		</div>
+		
+			</br>
+		
+		
+		
+			
+		
+	<form action="#" th:action="@{/cercaCorrentista}"  method="POST">
+		
+				
+				<input type="text" name=codicefiscale
+				placeholder="cerca tramite codice fiscale" class="form-control mb-4 col-4"  required>
+				
+				
+				<button type="submit" class="btn btn-info col-2"> Cerca Correntista</button>
+		</form>
+		<br>
+		
+				<br>
+		
+	<form action="#" th:action="@{/cercaConto}"  method="POST">
+		
+				
+				<input type="text" name=numeroconto
+				placeholder="cerca tramite numero conto per versare" class="form-control mb-4 col-4"  required>
+				
+				
+				<button type="submit" class="btn btn-info col-2"> Cerca Conto</button>
+		</form>
+		
+	</div>
+</body>
+</html>

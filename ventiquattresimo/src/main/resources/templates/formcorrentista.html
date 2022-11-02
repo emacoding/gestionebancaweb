@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Amministrazione Correntisti</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1>Amministrazionec correntisti e conti</h1>
+		<hr>
+		<h2>Salvataggio Correntista</h2>
+
+		<form action="#" th:action="@{/salvaCorrentista}" th:object="${correntista}" 
+			method="POST">
+			<input type="text" th:field="*{nome}"
+				placeholder="Inserisci nome " class="form-control mb-4 col-4" required>
+				
+				<input type="text" th:field="*{cognome}"
+				placeholder="Inserisci cognome" class="form-control mb-4 col-4" required>
+				
+				<input type="text" th:field="*{codicefiscale}"
+				placeholder="Inserisci codice fiscale" class="form-control mb-4 col-4" required>
+				
+				
+				
+				<button type="submit" class="btn btn-info col-2"> Salva Correntista</button>
+		</form>
+		
+		<hr>
+		
+	</div>
+</body>
+</html>

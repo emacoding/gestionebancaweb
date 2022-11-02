@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Amministrazione Correntisti</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+	
+</head>
+<body>
+
+	<div align=center>
+	<h1>Lista Correntisti</h1>
+	
+	
+	
+	
+	<a th:href = "@{/formCorrentista}" > Aggiungi Correntisti </a>
+	<br>
+		<br>
+	
+		<a th:href = "@{/formConto}" > Aggiungi Conto </a>
+	
+		<br>
+		<br>
+				<a th:href = "@{/index}" > Home </a>
+		<br>
+						<br>
+					
+			<div class="alert alert-danger" role="alert">
+			Oggetto non esistente, riprovare
+			</div>
+				
+	</div>
+</body>
+</html>
+

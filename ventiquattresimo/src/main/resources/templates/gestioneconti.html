@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Amministrazione conti</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+	
+</head>
+<body>
+
+	<div class="container my-2">
+	<h1>Lista Conti</h1>
+	
+	<a th:href = "@{/formCorrentista}" class="btn btn-info col-2"> Aggiungi correntista </a>
+			<a th:href = "@{/formConto}" class="btn btn-info col-2" > Aggiungi Conto </a>
+	
+	</br>
+		</br>
+	
+		<table border="1" class = "table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>
+							Numero conto
+					</th>
+					
+					
+					<th>
+							Saldo
+					</th>
+					<th> Opzioni </th>
+					
+					
+					
+					
+					
+					
+					
+					
+				</tr>
+			</thead>
+			
+			
+			<tbody>
+				<tr th:each="conto : ${listaconti}">
+					<td th:text="${conto.numeroConto}"></td>
+					<td th:text="${conto.saldo}"></td>
+					<td> <a th:href="@{/preleva/{id}(id=${conto.id})}" class="btn btn-primary" >Preleva</a>
+					    <a th:href="@{/versa/{id}(id=${conto.id})}" class="btn btn-primary">Versa</a>
+					    
+					</td>
+				</tr>
+			</tbody>
+			
+		</table>
+	
+	
+	<div class = "col-sm-1">
+											<a th:href="@{/index}">Home</a>
+					
+				</div>
+	 
+		
+		
+			</br>
+		
+		
+	</div>
+</body>
+</html>
+
+
+	
+	
+	
+		
+		
+		
+		
+		
+		
+		
